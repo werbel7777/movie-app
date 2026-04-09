@@ -2,23 +2,45 @@ import { useEffect, useState } from "react";
 import service from "./services/movieServices";
 import { useRef } from "react";
 
-function App(): JSX.Element {
-  const [movies, setMovies] = useState<any[]>([]);
+type Movie = {
+  adult: boolean;
+  backdrop_path?: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path?: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+};
 
-  const [newSearch, setNewSearch] = useState("");
+function App() {
+  const [movies, setMovies] = useState<Movie[]>([]);
+
+  const [newSearch, setNewSearch] = useState<string>("");
 
   useEffect(() => {
-    service.getAll().then((response) => {
+    service.getAll("").then((response) => {
       setMovies(response.data.results);
     });
   }, []);
 
-  const timer = useRef(null);
-  const changeSearch = (event) => {
-    clearTimeout(timer.current);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const changeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (timer.current !== null) {
+      clearTimeout(timer.current);
+    }
+
     const value = event.target.value;
     setNewSearch(value);
-    timer.current = setTimeout(() => {
+
+    timer.current = window.setTimeout(() => {
       service.getAll(value).then((response) => {
         setMovies(response.data.results);
       });
@@ -34,7 +56,7 @@ function App(): JSX.Element {
   );
 }
 
-const DisplayMovies = ({ results }) => {
+const DisplayMovies = ({ results }: { results: Movie[] }) => {
   return (
     <div>
       {results.map((movie, index) => (
@@ -48,7 +70,7 @@ const DisplayMovies = ({ results }) => {
   );
 };
 
-const Movie = ({ title, premiere }) => {
+const Movie = ({ title, premiere }: { title: string; premiere: string }) => {
   return (
     <div>
       <p>
@@ -58,7 +80,13 @@ const Movie = ({ title, premiere }) => {
   );
 };
 
-const Search = ({ newSearch, changeSearch }) => {
+const Search = ({
+  newSearch,
+  changeSearch,
+}: {
+  newSearch: string;
+  changeSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
   console.log(newSearch);
 
   return (
