@@ -7,7 +7,6 @@ import { DisplayMovies } from "./components/displayMovies";
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
-
   const [newSearch, setNewSearch] = useState<string>("");
 
   useEffect(() => {
@@ -29,8 +28,10 @@ function App() {
   };
 
   return (
-    <div>
-      <div>movie searcher</div>
+    <div className="min-h-screen bg-gradient-to-r from-red-300 to-pink-300 text-blue-500 p-10 ">
+      <div className="text-xl text-white drop-shadow-[0_2px_8px_black]">
+        movie searcher
+      </div>
       <Search newSearch={newSearch} changeSearch={changeSearch}></Search>
       <DisplayMovies results={movies}></DisplayMovies>
     </div>

@@ -3,10 +3,10 @@ import type { Movie as MovieType } from "./types";
 
 export const DisplayMovies = ({ results }: { results: MovieType[] }) => {
   return (
-    <div>
-      {results.map((movie, index) => (
+    <div className="mt-10">
+      {results.map((movie) => (
         <Movie
-          key={index}
+          key={movie.id}
           title={movie.original_title}
           premiere={movie.release_date}
         />
