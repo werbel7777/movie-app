@@ -6,9 +6,9 @@ export const Movie = ({
   premiere: string;
 }) => {
   return (
-    <div className="text-white drop-shadow-[0_2px_8px_black] mt-2">
-      <p>
-        Title: {title}/Year: {premiere}
+    <div className="bg-white/20 hover:bg-white/60 transition rounded p-3 text-white shadow-md">
+      <p className="drop-shadow-[0_2px_8px_black]">
+        {title} / {premiere}
       </p>
     </div>
   );

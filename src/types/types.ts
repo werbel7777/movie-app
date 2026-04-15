@@ -1,7 +1,7 @@
 type Result = {
   adult: boolean;
   backdrop_path?: string;
-  genre_ids: Array<number>;
+  genre_ids: number[];
   id: number;
   original_language: string;
   original_title: string;
@@ -17,7 +17,7 @@ type Result = {
 
 type MovieResponse = {
   page: number;
-  results: Array<Movie>;
+  results: Movie[];
   total_pages: number;
   total_results: number;
 };
