@@ -1,14 +1,17 @@
-export const debounce = (
-  callback: (value: string) => void,
-  time: number,
-): ((value: string) => void) => {
-  let timer: ReturnType<typeof setTimeout>;
+import { useEffect, useRef, useState } from "react";
 
-  return (value: string) => {
-    clearTimeout(timer);
-
-    timer = setTimeout(() => {
-      callback(value);
-    }, time);
-  };
-};
+function useDebounce(value, delay = 500) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  const timerRef = useRef(null);
+  useEffect(() => {
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(timerRef.current);
+    };
+  }, [value, delay]);
+  return debouncedValue;
+}
+export default useDebounce;
