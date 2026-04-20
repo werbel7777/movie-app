@@ -5,6 +5,7 @@ import type { Movie } from "./types/types";
 import { Search } from "./components/search";
 import { DisplayMovies } from "./components/displayMovies";
 import { Watermark } from "./components/emptyPageWatermark";
+import { Link } from "react-router-dom";
 
 function MainPage() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -28,15 +29,12 @@ function MainPage() {
       <div className="font-sans text-2xl font-semibold text-white tracking-wide drop-shadow-[0_6px_12px_rgba(0,0,0,0.7)] -ml-6">
         movie searcher
       </div>
-
       <Search
         newSearch={newSearch}
         changeSearch={changeSearch}
         setNewSearch={setNewSearch}
       />
-
       <Watermark query={newSearch} />
-
       {newSearch && <DisplayMovies results={movies} />}
     </div>
   );
