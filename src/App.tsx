@@ -7,6 +7,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path="/credits" element={<Welcome />} />
       </Routes>
     </BrowserRouter>
   );
