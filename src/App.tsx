@@ -5,6 +5,7 @@ import type { Movie } from "./types/types";
 import { Search } from "./components/search";
 import { DisplayMovies } from "./components/displayMovies";
 import { Watermark } from "./components/emptyPageWatermark";
+import { TrendingMoviesPage } from "./components/trendigMoviesPage";
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -39,7 +40,7 @@ function App() {
         changeSearch={changeSearch}
         setNewSearch={setNewSearch}
       ></Search>
-      <Watermark query={newSearch}></Watermark>
+      <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
       <DisplayMovies results={movies}></DisplayMovies>
     </div>
   );
