@@ -1,8 +1,10 @@
 import axios from "axios";
 import type { AxiosResponse } from "axios";
 import type { MovieResponse } from "../types/types";
+import type { Movie } from "../types/types";
 const baseUrl =
   "https://api.themoviedb.org/3/search/movie?api_key=3869c6619ebd5eadb7028dcddad8ac45&query=";
+const movieDetailsBaseUrl = "https://api.themoviedb.org/3/movie/";
 
 const getAll = (query: string): Promise<AxiosResponse<MovieResponse>> => {
   if (query) {
@@ -18,4 +20,11 @@ const getAll = (query: string): Promise<AxiosResponse<MovieResponse>> => {
     } as unknown as AxiosResponse<MovieResponse>);
   }
 };
-export default { getAll };
+
+const getDetails = (id: string): Promise<AxiosResponse<Movie>> => {
+  const request = axios.get(
+    movieDetailsBaseUrl + id + "?api_key=3869c6619ebd5eadb7028dcddad8ac45",
+  );
+  return request;
+};
+export default { getAll, getDetails };
