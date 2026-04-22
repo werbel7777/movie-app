@@ -18,4 +18,11 @@ const getAll = (query: string): Promise<AxiosResponse<MovieResponse>> => {
     } as unknown as AxiosResponse<MovieResponse>);
   }
 };
-export default { getAll };
+
+const getTrend = (): Promise<AxiosResponse<MovieResponse>> => {
+  const request = axios.get<MovieResponse>(
+    "https://api.themoviedb.org/3/trending/movie/week?api_key=3869c6619ebd5eadb7028dcddad8ac45",
+  );
+  return request;
+};
+export default { getAll, getTrend };
