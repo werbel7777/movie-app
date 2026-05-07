@@ -4,8 +4,7 @@ import useDebounce from "../hooks/useDebounce";
 import type { Movie } from "../types/types";
 import { Search } from "../components/search";
 import { DisplayMovies } from "../components/displayMovies";
-import { Watermark } from "../components/emptyPageWatermark";
-import { Link } from "react-router-dom";
+import { TrendingMoviesPage } from "../components/trendigMoviesPage";
 
 function MainPage() {
   const [movies, setMovies] = useState<Movie[]>([]);
