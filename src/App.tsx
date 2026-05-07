@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainPage from "./mainPage";
-import { Welcome } from "./moviePage";
+import MainPage from "./pages/mainPage";
+import { Welcome } from "./pages/moviePage";
 
 const App = () => {
   return (

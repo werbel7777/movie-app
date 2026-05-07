@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import service from "./services/movieServices";
-import useDebounce from "./utils/utils";
-import type { Movie } from "./types/types";
-import { Search } from "./components/search";
-import { DisplayMovies } from "./components/displayMovies";
-import { Watermark } from "./components/emptyPageWatermark";
+import service from "../services/movieServices";
+import useDebounce from "../hooks/useDebounce";
+import type { Movie } from "../types/types";
+import { Search } from "../components/search";
+import { DisplayMovies } from "../components/displayMovies";
+import { Watermark } from "../components/emptyPageWatermark";
 import { Link } from "react-router-dom";
 
 function MainPage() {
