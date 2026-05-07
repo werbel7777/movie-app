@@ -24,7 +24,7 @@ const getAll = (query: string): Promise<AxiosResponse<MovieResponse>> => {
 
 const getTrend = (): Promise<AxiosResponse<MovieResponse>> => {
   const request = axios.get<MovieResponse>(
-    `${BASE_URL}/movie/week?api_key=${API_KEY}`,
+    `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`,
   );
   return request;
 };
