@@ -11,6 +11,7 @@ export const DisplayMovies = ({ results }: { results: MovieType[] }) => {
           key={movie.id}
           title={movie.original_title}
           premiere={movie.release_date}
+          id={movie.id}
         />
       ))}
     </div>
