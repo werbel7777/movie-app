@@ -1,5 +1,5 @@
 import { Movie } from "./movie";
-import type { Movie as MovieType } from "./types";
+import type { Movie as MovieType } from "../types/types";
 
 export const DisplayMovies = ({ results }: { results: MovieType[] }) => {
   if (!results.length) return null;
