@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import service from "../services/movieServices";
 import type { Movie } from "../types/types";
 import { Logo } from "../components/Logo";
@@ -22,9 +22,9 @@ export const Welcome = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-900 to-blue-500 p-10">
-      <div className="mb-8">
+      <Link to="/" className="relative z-50 mb-8 block w-fit cursor-pointer">
         <Logo />
-      </div>
+      </Link>
 
       <div className="flex flex-col md:flex-row gap-8">
         <div className="shrink-0">

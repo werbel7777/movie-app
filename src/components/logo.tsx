@@ -1,6 +1,6 @@
 export const Logo = () => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="pointer-events-none flex items-center gap-4">
       <svg
         className="w-16 h-14 md:w-20 md:h-16"
         viewBox="0 0 72 56"
