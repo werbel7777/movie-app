@@ -39,4 +39,13 @@ type Movie = {
   vote_count: number;
 };
 
-export type { Result, MovieResponse, Movie };
+type Category = {
+  id: number;
+  name: string;
+};
+
+type CategoriesResponse = {
+  genres: Category[];
+};
+
+export type { Result, MovieResponse, Movie, Category, CategoriesResponse };

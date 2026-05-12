@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import service from "../services/movieServices";
 import useDebounce from "../hooks/useDebounce";
-import type { Movie } from "../types/types";
+import type { Category, Movie } from "../types/types";
 import { Search } from "../components/search";
 import { DisplayMovies } from "../components/displayMovies";
 import { TrendingMoviesPage } from "../components/trendigMoviesPage";
+import { DisplayCategories } from "../components/displayCategories";
 
 function MainPage() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [newSearch, setNewSearch] = useState<string>("");
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const debouncedSearch = useDebounce(newSearch, 500);
 
@@ -17,6 +19,12 @@ function MainPage() {
       setMovies(response.data.results);
     });
   }, [debouncedSearch]);
+
+  useEffect(() => {
+    service.getCategories().then((response) => {
+      setCategories(response.data.genres);
+    });
+  }, []);
 
   const changeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -29,12 +37,9 @@ function MainPage() {
         movie searcher
       </div>
 
-      <Search
-        newSearch={newSearch}
-        changeSearch={changeSearch}
-        setNewSearch={setNewSearch}
-      ></Search>
+      <Search newSearch={newSearch} changeSearch={changeSearch}></Search>
       <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
+      <DisplayCategories categories={categories}></DisplayCategories>
       <DisplayMovies results={movies}></DisplayMovies>
     </div>
   );
