@@ -5,7 +5,7 @@ import type { Movie } from "../types/types";
 import { Search } from "../components/search";
 import { DisplayMovies } from "../components/displayMovies";
 import { TrendingMoviesPage } from "../components/trendigMoviesPage";
-import { Logo } from "../components/Logo";
+import { Logo } from "../components/logo";
 
 function MainPage() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -33,7 +33,6 @@ function MainPage() {
       <Search
         newSearch={newSearch}
         changeSearch={changeSearch}
-        setNewSearch={setNewSearch}
       ></Search>
       <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
       <DisplayMovies results={movies}></DisplayMovies>

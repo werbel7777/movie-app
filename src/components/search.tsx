@@ -1,11 +1,9 @@
 export const Search = ({
   newSearch,
   changeSearch,
-  setNewSearch,
 }: {
   newSearch: string;
   changeSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  setNewSearch: (value: string) => void;
 }) => {
   return (
     <div className="relative mt-3">

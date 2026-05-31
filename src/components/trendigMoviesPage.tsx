@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import type { Movie } from "../types/types";
 import service from "../services/movieServices";
 import { DisplayTrendingMovies } from "./displayTrendingMovies";
-import { SectionTitle } from "./trendind-now";
+import { SectionTitle } from "./trending-now";
 
 export const TrendingMoviesPage = ({ query }: { query: string }) => {
   const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);

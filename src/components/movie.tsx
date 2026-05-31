@@ -7,7 +7,7 @@ export const Movie = ({
 }: {
   title: string;
   premiere: string;
-  id: string;
+  id: number;
 }) => {
   return (
     <div className="bg-white/20 hover:bg-white/60 transition rounded p-3 text-white shadow-md">

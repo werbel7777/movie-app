@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import service from "../services/movieServices";
 import type { Movie } from "../types/types";
-import { Logo } from "../components/Logo";
+import { Logo } from "../components/logo";
 
 export const Welcome = () => {
   const [actualMovie, setActualMovie] = useState<Movie | null>(null);
