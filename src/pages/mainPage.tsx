@@ -30,10 +30,7 @@ function MainPage() {
         <Logo />
       </div>
 
-      <Search
-        newSearch={newSearch}
-        changeSearch={changeSearch}
-      ></Search>
+      <Search newSearch={newSearch} changeSearch={changeSearch}></Search>
       <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
       <DisplayMovies results={movies}></DisplayMovies>
     </div>
