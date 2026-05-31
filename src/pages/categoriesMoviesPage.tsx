@@ -2,11 +2,12 @@ import service from "../services/movieServices";
 import { useEffect, useState } from "react";
 import { DisplayMovies } from "../components/displayMovies";
 import { useParams } from "react-router-dom";
+import type { Movie } from "../types/types";
 
 export const MoviesByCategoryPage = () => {
   const { categoryId } = useParams();
 
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
     if (categoryId) {
