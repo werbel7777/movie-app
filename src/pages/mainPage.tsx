@@ -4,7 +4,7 @@ import useDebounce from "../hooks/useDebounce";
 import type { Category, Movie } from "../types/types";
 import { Search } from "../components/search";
 import { DisplayMovies } from "../components/displayMovies";
-import { TrendingMoviesPage } from "../components/trendigMoviesPage";
+import { TrendingMoviesPage } from "./trendigMoviesPage";
 import { DisplayCategories } from "../components/displayCategories";
 
 function MainPage() {

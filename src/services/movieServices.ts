@@ -40,4 +40,20 @@ const getCategories = (): Promise<AxiosResponse<CategoriesResponse>> => {
   );
   return request;
 };
-export default { getTrend, getAll, getDetails, getCategories };
+
+const getMovieByCategory = (
+  categoryId: number,
+): Promise<AxiosResponse<MovieResponse>> => {
+  const request = axios.get<MovieResponse>(
+    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${categoryId}`,
+  );
+  return request;
+};
+
+export default {
+  getTrend,
+  getAll,
+  getDetails,
+  getCategories,
+  getMovieByCategory,
+};

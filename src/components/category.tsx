@@ -1,9 +1,13 @@
 import type { Category as CategoryType } from "../types/types";
+import { Link } from "react-router-dom";
 
 export const Category = ({ category }: { category: CategoryType }) => {
   return (
-    <p className="flex h-64 w-44 shrink-0 items-center justify-center rounded bg-white/20 p-4 text-center text-lg font-semibold text-white shadow-md transition hover:bg-white/40">
+    <Link
+      to={`/categories/${category.id}`}
+      className="flex h-64 w-44 shrink-0 items-center justify-center rounded bg-white/20 p-4 text-center text-lg font-semibold text-white shadow-md transition hover:bg-white/40"
+    >
       {category.name}
-    </p>
+    </Link>
   );
 };
