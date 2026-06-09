@@ -2,3 +2,5 @@ node_modules
 package-lock.json
 .env
 .DS_Store
+dist
+public/Dawid_Gorzkowski_CV_EN_modern_filled_v5.pdf

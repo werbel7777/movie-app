@@ -1,7 +1,11 @@
 import type { Category as CategoryType } from "../types/types";
 import { Link } from "react-router-dom";
 
-export const Category = ({ category }: { category: CategoryType }) => {
+type CategoryProps = {
+  category: CategoryType;
+};
+
+export const Category = ({ category }: CategoryProps) => {
   return (
     <Link
       to={`/categories/${category.id}`}
