@@ -2,6 +2,7 @@ import axios from "axios";
 import type { AxiosResponse } from "axios";
 import type { MovieResponse } from "../types/types";
 import type { Movie } from "../types/types";
+import type { CategoriesResponse } from "../types/types";
 const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -32,4 +33,27 @@ const getDetails = (id: string): Promise<AxiosResponse<Movie>> => {
   const request = axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
   return request;
 };
-export default { getTrend, getAll, getDetails };
+
+const getCategories = (): Promise<AxiosResponse<CategoriesResponse>> => {
+  const request = axios.get<CategoriesResponse>(
+    `${BASE_URL}/genre/movie/list?api_key=${API_KEY}`,
+  );
+  return request;
+};
+
+const getMovieByCategory = (
+  categoryId: number,
+): Promise<AxiosResponse<MovieResponse>> => {
+  const request = axios.get<MovieResponse>(
+    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${categoryId}`,
+  );
+  return request;
+};
+
+export default {
+  getTrend,
+  getAll,
+  getDetails,
+  getCategories,
+  getMovieByCategory,
+};

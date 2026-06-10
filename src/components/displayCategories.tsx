@@ -1,0 +1,45 @@
+import { Category } from "./category";
+import type { Category as CategoryType } from "../types/types";
+import { useRef } from "react";
+
+export const DisplayCategories = ({
+  categories,
+}: {
+  categories: CategoryType[];
+}) => {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
+  };
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
+  };
+
+  if (!categories.length) return null;
+  return (
+    <div className="relative">
+      <button
+        className="absolute left-2 top-1/2 z-10 -translate-y-1/2 h-10 w-10 rounded-full bg-white/5 text-white text-xl font-bold shadow-md backdrop-blur-md transition hover:bg-white/10"
+        onClick={scrollLeft}
+      >
+        &lt;
+      </button>
+      <div
+        ref={scrollRef}
+        className="mt-10 flex gap-4 overflow-x-auto rounded bg-white/10 p-4 backdrop-blur-md hide-scrollbar"
+      >
+        {categories.map((category) => (
+          <Category key={category.id} category={category}></Category>
+        ))}
+      </div>
+      <button
+        className="absolute right-2 top-1/2 z-10 -translate-y-1/2 h-10 w-10 rounded-full bg-white/20 text-white text-xl font-bold shadow-md backdrop-blur-md transition hover:bg-white/40"
+        onClick={scrollRight}
+      >
+        &gt;
+      </button>
+    </div>
+  );
+};
