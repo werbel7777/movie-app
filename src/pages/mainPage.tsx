@@ -40,7 +40,10 @@ function MainPage() {
 
       <Search newSearch={newSearch} changeSearch={changeSearch}></Search>
       <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
-      <DisplayCategories categories={categories}></DisplayCategories>
+      <DisplayCategories
+        categories={categories}
+        query={newSearch}
+      ></DisplayCategories>
       <DisplayMovies results={movies}></DisplayMovies>
     </div>
   );
