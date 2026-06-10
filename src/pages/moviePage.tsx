@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import service from "../services/movieServices";
 import type { Movie } from "../types/types";
+import { Logo } from "../components/logo";
 
 export const Welcome = () => {
   const [actualMovie, setActualMovie] = useState<Movie | null>(null);
@@ -16,33 +17,37 @@ export const Welcome = () => {
   }, [movieId]);
 
   if (!actualMovie) {
-    return <div> Cannot show movie, search again!</div>;
+    return <div>Cannot show movie, search again!</div>;
   }
+
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-900 to-blue-500 text-blue-500 p-10">
-      <div className="font-sans text-2xl font-semibold text-white tracking-wide drop-shadow-[0_6px_12px_rgba(0,0,0,0.7)] -ml-6 mb-8">
-        movie searcher
-      </div>
-      <div>
-        <img
-          className="rounded"
-          src={`https://image.tmdb.org/t/p/w500${actualMovie.poster_path}`}
-          alt="brak obrazu"
-        ></img>
-      </div>
+    <div className="min-h-screen bg-gradient-to-r from-blue-900 to-blue-500 p-10">
+      <Link to="/" className="relative z-50 mb-8 block w-fit cursor-pointer">
+        <Logo />
+      </Link>
 
-      <div className="mt-10 grid gap-4 bg-white/10 backdrop-blur-md rounded p-6 shadow-md">
-        <h1 className="text-3xl font-bold text-white drop-shadow-[0_2px_8px_black]">
-          {actualMovie.title}
-        </h1>
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="shrink-0">
+          <img
+            className="w-full md:w-[90%] rounded"
+            src={`https://image.tmdb.org/t/p/w500${actualMovie.poster_path}`}
+            alt={actualMovie.title}
+          />
+        </div>
 
-        <p className="text-sm text-blue-100 drop-shadow-[0_2px_8px_black]">
-          {actualMovie.release_date}
-        </p>
+        <div className="grid gap-4 content-start">
+          <h1 className="text-3xl font-bold text-white drop-shadow-[0_2px_8px_black]">
+            {actualMovie.title}
+          </h1>
 
-        <p className="text-white leading-7 drop-shadow-[0_2px_8px_black]">
-          {actualMovie.overview}
-        </p>
+          <p className="text-sm text-blue-100 drop-shadow-[0_2px_8px_black]">
+            {actualMovie.release_date}
+          </p>
+
+          <p className="text-white leading-7 drop-shadow-[0_2px_8px_black]">
+            {actualMovie.overview}
+          </p>
+        </div>
       </div>
     </div>
   );

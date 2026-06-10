@@ -4,8 +4,9 @@ import useDebounce from "../hooks/useDebounce";
 import type { Category, Movie } from "../types/types";
 import { Search } from "../components/search";
 import { DisplayMovies } from "../components/displayMovies";
-import { TrendingMoviesPage } from "./trendigMoviesPage";
 import { DisplayCategories } from "../components/displayCategories";
+import { TrendingMoviesPage } from "../components/trendigMoviesPage";
+import { Logo } from "../components/logo";
 
 function MainPage() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -34,7 +35,7 @@ function MainPage() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-900 to-blue-500 text-blue-500 p-10 ">
       <div className="font-sans text-2xl font-semibold text-white tracking-wide drop-shadow-[0_6px_12px_rgba(0,0,0,0.7)] -ml-6">
-        movie searcher
+        <Logo />
       </div>
 
       <Search newSearch={newSearch} changeSearch={changeSearch}></Search>

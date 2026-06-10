@@ -36,6 +36,7 @@ export const DisplayTrendingMovies = ({
             key={movie.id}
             title={movie.original_title}
             path={movie.poster_path}
+            id={movie.id}
           />
         ))}
       </div>

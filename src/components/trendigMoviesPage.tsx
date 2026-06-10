@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import type { Movie } from "../types/types";
 import service from "../services/movieServices";
-import { DisplayTrendingMovies } from "../components/displayTrendingMovies";
+import { DisplayTrendingMovies } from "./displayTrendingMovies";
+import { SectionTitle } from "./trending-now";
+
 export const TrendingMoviesPage = ({ query }: { query: string }) => {
   const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
 
@@ -16,10 +17,11 @@ export const TrendingMoviesPage = ({ query }: { query: string }) => {
 
   return (
     <>
-      <h2 className="mt-10 mb-3 font-sans text-xl font-semibold text-white tracking-wide drop-shadow-[0_6px_12px_rgba(0,0,0,0.7)] -ml-6">
-        trending now
-      </h2>
-      <DisplayTrendingMovies results={trendingMovies}></DisplayTrendingMovies>
+      <div className="mt-10">
+        <SectionTitle>Trending now</SectionTitle>
+      </div>
+
+      <DisplayTrendingMovies results={trendingMovies} />
     </>
   );
 };
