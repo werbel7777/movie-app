@@ -6,6 +6,7 @@ import { Logo } from "../components/logo";
 
 export const Welcome = () => {
   const [actualMovie, setActualMovie] = useState<Movie | null>(null);
+  const [isFavorite, setIsFavorite] = useState(false);
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -15,6 +16,11 @@ export const Welcome = () => {
         .then((response) => setActualMovie(response.data));
     }
   }, [movieId]);
+
+  const toggleFavorite = () => {
+    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+    console.log(isFavorite);
+  };
 
   if (!actualMovie) {
     return <div>Cannot show movie, search again!</div>;
@@ -36,9 +42,19 @@ export const Welcome = () => {
         </div>
 
         <div className="grid gap-4 content-start">
-          <h1 className="text-3xl font-bold text-white drop-shadow-[0_2px_8px_black]">
-            {actualMovie.title}
-          </h1>
+          <div>
+            <h1 className="text-3xl font-bold text-white drop-shadow-[0_2px_8px_black]">
+              {actualMovie.title}
+            </h1>
+            <button
+              className={`text-3xl transition ${
+                isFavorite ? "text-red-500" : "text-white"
+              }`}
+              onClick={toggleFavorite}
+            >
+              {isFavorite ? "♥" : "♡"}
+            </button>
+          </div>
 
           <p className="text-sm text-blue-100 drop-shadow-[0_2px_8px_black]">
             {actualMovie.release_date}
