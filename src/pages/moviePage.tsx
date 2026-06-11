@@ -4,7 +4,12 @@ import service from "../services/movieServices";
 import type { Movie } from "../types/types";
 import { Logo } from "../components/logo";
 
-export const Welcome = () => {
+type WelcomeProps = {
+  favoriteList: number[];
+  updateFavoriteList: (movieId: number) => void;
+};
+
+export const Welcome = ({ favoriteList, updateFavoriteList }: WelcomeProps) => {
   const [actualMovie, setActualMovie] = useState<Movie | null>(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const { movieId } = useParams();
@@ -18,8 +23,12 @@ export const Welcome = () => {
   }, [movieId]);
 
   const toggleFavorite = () => {
+    if (!actualMovie) return;
+
     setIsFavorite((prevIsFavorite) => !prevIsFavorite);
     console.log(isFavorite);
+    updateFavoriteList(actualMovie.id);
+    console.log(favoriteList);
   };
 
   if (!actualMovie) {
