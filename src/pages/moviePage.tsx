@@ -11,7 +11,6 @@ type WelcomeProps = {
 
 export const Welcome = ({ favoriteList, updateFavoriteList }: WelcomeProps) => {
   const [actualMovie, setActualMovie] = useState<Movie | null>(null);
-  const [isFavorite, setIsFavorite] = useState(false);
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -24,11 +23,7 @@ export const Welcome = ({ favoriteList, updateFavoriteList }: WelcomeProps) => {
 
   const toggleFavorite = () => {
     if (!actualMovie) return;
-
-    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
-    console.log(isFavorite);
     updateFavoriteList(actualMovie.id);
-    console.log(favoriteList);
   };
 
   if (!actualMovie) {
@@ -57,11 +52,13 @@ export const Welcome = ({ favoriteList, updateFavoriteList }: WelcomeProps) => {
             </h1>
             <button
               className={`text-3xl transition ${
-                isFavorite ? "text-red-500" : "text-white"
+                favoriteList.includes(actualMovie.id)
+                  ? "text-red-500"
+                  : "text-white"
               }`}
               onClick={toggleFavorite}
             >
-              {isFavorite ? "♥" : "♡"}
+              {favoriteList.includes(actualMovie.id) ? "♥" : "♡"}
             </button>
           </div>
 

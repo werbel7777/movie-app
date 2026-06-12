@@ -8,7 +8,12 @@ const App = () => {
   const [favoriteList, setFavoriteList] = useState<number[]>([]);
 
   const updateFavoriteList = (movieId: number) => {
-    setFavoriteList((prevFavoriteList) => [...prevFavoriteList, movieId]);
+    setFavoriteList((prevFavoriteList) => {
+      if (prevFavoriteList.includes(movieId)) {
+        return prevFavoriteList.filter((id) => id !== movieId);
+      }
+      return [...prevFavoriteList, movieId];
+    });
   };
 
   return (
