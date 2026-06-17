@@ -3,6 +3,7 @@ import MainPage from "./pages/mainPage";
 import { Welcome } from "./pages/moviePage";
 import { MoviesByCategoryPage } from "./pages/categoriesMoviesPage";
 import { useState } from "react";
+import { Favorites } from "./pages/favorites";
 
 const App = () => {
   const [favoriteList, setFavoriteList] = useState<number[]>([]);
@@ -32,6 +33,10 @@ const App = () => {
         <Route
           path="/categories/:categoryId"
           element={<MoviesByCategoryPage />}
+        />
+        <Route
+          path="/favorites"
+          element={<Favorites favoriteList={favoriteList}></Favorites>}
         />
       </Routes>
     </BrowserRouter>
