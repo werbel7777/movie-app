@@ -49,10 +49,7 @@ function MainPage() {
         </Link>
       </div>
       <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
-      <DisplayCategories
-        categories={categories}
-        query={newSearch}
-      ></DisplayCategories>
+      <DisplayCategories categories={categories} query={newSearch} />
       <DisplayMovies results={movies}></DisplayMovies>
     </div>
   );

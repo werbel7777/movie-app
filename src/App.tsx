@@ -16,7 +16,6 @@ const App = () => {
   });
   useEffect(() => {
     localStorage.setItem("favoriteMovies", JSON.stringify(favoriteList));
-    console.log(localStorage.getItem("favoriteMovies"));
   }, [favoriteList]);
 
   const updateFavoriteList = (movieId: number) => {
