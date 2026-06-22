@@ -4,9 +4,20 @@ import { Welcome } from "./pages/moviePage";
 import { MoviesByCategoryPage } from "./pages/categoriesMoviesPage";
 import { useState } from "react";
 import { Favorites } from "./pages/favorites";
+import { useEffect } from "react";
 
 const App = () => {
-  const [favoriteList, setFavoriteList] = useState<number[]>([]);
+  const [favoriteList, setFavoriteList] = useState<number[]>(() => {
+    const localStorageFavorites = localStorage.getItem("favoriteMovies");
+    if (!localStorageFavorites) {
+      return [];
+    }
+    return JSON.parse(localStorageFavorites);
+  });
+  useEffect(() => {
+    localStorage.setItem("favoriteMovies", JSON.stringify(favoriteList));
+    console.log(localStorage.getItem("favoriteMovies"));
+  }, [favoriteList]);
 
   const updateFavoriteList = (movieId: number) => {
     setFavoriteList((prevFavoriteList) => {
