@@ -48,4 +48,15 @@ type CategoriesResponse = {
   genres: Category[];
 };
 
-export type { Result, MovieResponse, Movie, Category, CategoriesResponse };
+type FavoritesProps = {
+  favoriteList: number[];
+};
+
+export type {
+  Result,
+  MovieResponse,
+  Movie,
+  Category,
+  CategoriesResponse,
+  FavoritesProps,
+};

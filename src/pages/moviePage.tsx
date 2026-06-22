@@ -4,7 +4,12 @@ import service from "../services/movieServices";
 import type { Movie } from "../types/types";
 import { Logo } from "../components/logo";
 
-export const Welcome = () => {
+type WelcomeProps = {
+  favoriteList: number[];
+  updateFavoriteList: (movieId: number) => void;
+};
+
+export const Welcome = ({ favoriteList, updateFavoriteList }: WelcomeProps) => {
   const [actualMovie, setActualMovie] = useState<Movie | null>(null);
   const { movieId } = useParams();
 
@@ -15,6 +20,11 @@ export const Welcome = () => {
         .then((response) => setActualMovie(response.data));
     }
   }, [movieId]);
+
+  const toggleFavorite = () => {
+    if (!actualMovie) return;
+    updateFavoriteList(actualMovie.id);
+  };
 
   if (!actualMovie) {
     return <div>Cannot show movie, search again!</div>;
@@ -36,9 +46,21 @@ export const Welcome = () => {
         </div>
 
         <div className="grid gap-4 content-start">
-          <h1 className="text-3xl font-bold text-white drop-shadow-[0_2px_8px_black]">
-            {actualMovie.title}
-          </h1>
+          <div>
+            <h1 className="text-3xl font-bold text-white drop-shadow-[0_2px_8px_black]">
+              {actualMovie.title}
+            </h1>
+            <button
+              className={`text-3xl transition ${
+                favoriteList.includes(actualMovie.id)
+                  ? "text-red-500"
+                  : "text-white"
+              }`}
+              onClick={toggleFavorite}
+            >
+              {favoriteList.includes(actualMovie.id) ? "♥" : "♡"}
+            </button>
+          </div>
 
           <p className="text-sm text-blue-100 drop-shadow-[0_2px_8px_black]">
             {actualMovie.release_date}

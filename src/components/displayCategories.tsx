@@ -4,8 +4,10 @@ import { useRef } from "react";
 
 export const DisplayCategories = ({
   categories,
+  query,
 }: {
   categories: CategoryType[];
+  query: string;
 }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -16,7 +18,7 @@ export const DisplayCategories = ({
   const scrollRight = () => {
     scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
   };
-
+  if (query) return null;
   if (!categories.length) return null;
   return (
     <div className="relative">
