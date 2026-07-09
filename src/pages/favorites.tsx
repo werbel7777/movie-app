@@ -1,11 +1,17 @@
 import { DisplayMovies } from "../components/displayMovies";
 import { useEffect, useState } from "react";
-import type { FavoritesProps, Movie } from "../types/types";
+import type { Movie } from "../types/types";
 import service from "../services/movieServices";
 import { Link } from "react-router-dom";
 import { Logo } from "../components/logo";
+import { useSelector } from "react-redux";
+import type { RootState } from "../store/store";
 
-export const Favorites = ({ favoriteList }: FavoritesProps) => {
+export const Favorites = () => {
+  const favoriteList = useSelector(
+    (state: RootState) => state.favorites.favoriteList,
+  );
+
   const [movies, setMovies] = useState<Movie[]>([]);
   useEffect(() => {
     const requests = favoriteList.map((id) => service.getDetails(String(id)));
