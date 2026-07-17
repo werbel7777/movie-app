@@ -3,13 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import service from "../services/movieServices";
 import type { Movie } from "../types/types";
 import { Logo } from "../components/logo";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFavorite } from "../store/favoritesSlice";
+import type { RootState } from "../store/store";
 
-type WelcomeProps = {
-  favoriteList: number[];
-  updateFavoriteList: (movieId: number) => void;
-};
+export const Welcome = () => {
+  const dispatch = useDispatch();
 
-export const Welcome = ({ favoriteList, updateFavoriteList }: WelcomeProps) => {
+  const favoriteList = useSelector(
+    (state: RootState) => state.favorites.favoriteList,
+  );
+
   const [actualMovie, setActualMovie] = useState<Movie | null>(null);
   const { movieId } = useParams();
 
@@ -21,9 +25,9 @@ export const Welcome = ({ favoriteList, updateFavoriteList }: WelcomeProps) => {
     }
   }, [movieId]);
 
-  const toggleFavorite = () => {
+  const handleToggleFavorite = () => {
     if (!actualMovie) return;
-    updateFavoriteList(actualMovie.id);
+    dispatch(toggleFavorite(actualMovie.id));
   };
 
   if (!actualMovie) {
@@ -56,7 +60,7 @@ export const Welcome = ({ favoriteList, updateFavoriteList }: WelcomeProps) => {
                   ? "text-red-500"
                   : "text-white"
               }`}
-              onClick={toggleFavorite}
+              onClick={handleToggleFavorite}
             >
               {favoriteList.includes(actualMovie.id) ? "♥" : "♡"}
             </button>
