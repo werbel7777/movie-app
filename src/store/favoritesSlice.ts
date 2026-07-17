@@ -15,9 +15,10 @@ const favoriteSlice = createSlice({
   reducers: {
     toggleFavorite: (state, action: PayloadAction<number>) => {
       if (state.favoriteList.includes(action.payload)) {
-        state.favoriteList = state.favoriteList.filter(
+        const filteredFavoriteList = state.favoriteList.filter(
           (id) => id !== action.payload,
         );
+        state.favoriteList = filteredFavoriteList;
         localStorage.setItem(
           "favoriteMovies",
           JSON.stringify(state.favoriteList),

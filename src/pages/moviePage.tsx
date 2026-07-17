@@ -8,12 +8,14 @@ import { toggleFavorite } from "../store/favoritesSlice";
 import type { RootState } from "../store/store";
 
 export const Welcome = () => {
-  const [actualMovie, setActualMovie] = useState<Movie | null>(null);
-  const { movieId } = useParams();
+  const dispatch = useDispatch();
 
   const favoriteList = useSelector(
     (state: RootState) => state.favorites.favoriteList,
   );
+
+  const [actualMovie, setActualMovie] = useState<Movie | null>(null);
+  const { movieId } = useParams();
 
   useEffect(() => {
     if (movieId) {
@@ -22,8 +24,6 @@ export const Welcome = () => {
         .then((response) => setActualMovie(response.data));
     }
   }, [movieId]);
-
-  const dispatch = useDispatch();
 
   const handleToggleFavorite = () => {
     if (!actualMovie) return;
