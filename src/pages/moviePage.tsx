@@ -6,6 +6,7 @@ import { Logo } from "../components/logo";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavorite } from "../store/favoritesSlice";
 import type { RootState } from "../store/store";
+import { toggleWatchList } from "../store/watchListSlice";
 
 export const Welcome = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,10 @@ export const Welcome = () => {
   const favoriteList = useSelector(
     (state: RootState) => state.favorites.favoriteList,
   );
+  const watchList = useSelector(
+    (state: RootState) => state.watchList.watchList,
+  );
+  console.log(watchList);
 
   const [actualMovie, setActualMovie] = useState<Movie | null>(null);
   const { movieId } = useParams();
@@ -28,6 +33,11 @@ export const Welcome = () => {
   const handleToggleFavorite = () => {
     if (!actualMovie) return;
     dispatch(toggleFavorite(actualMovie.id));
+  };
+
+  const handleToggleWatchList = () => {
+    if (!actualMovie) return;
+    dispatch(toggleWatchList(actualMovie.id));
   };
 
   if (!actualMovie) {
@@ -54,16 +64,24 @@ export const Welcome = () => {
             <h1 className="text-3xl font-bold text-white drop-shadow-[0_2px_8px_black]">
               {actualMovie.title}
             </h1>
-            <button
-              className={`text-3xl transition ${
-                favoriteList.includes(actualMovie.id)
-                  ? "text-red-500"
-                  : "text-white"
-              }`}
-              onClick={handleToggleFavorite}
-            >
-              {favoriteList.includes(actualMovie.id) ? "♥" : "♡"}
-            </button>
+            <div className="flex items-center gap-4">
+              <button
+                className={`text-3xl transition ${
+                  favoriteList.includes(actualMovie.id)
+                    ? "text-red-500"
+                    : "text-white"
+                }`}
+                onClick={handleToggleFavorite}
+              >
+                {favoriteList.includes(actualMovie.id) ? "♥" : "♡"}
+              </button>
+              <button
+                className="text-3xl text-white transition"
+                onClick={handleToggleWatchList}
+              >
+                🔖
+              </button>
+            </div>
           </div>
 
           <p className="text-sm text-blue-100 drop-shadow-[0_2px_8px_black]">
