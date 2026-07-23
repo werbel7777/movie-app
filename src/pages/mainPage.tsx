@@ -47,6 +47,12 @@ function MainPage() {
         >
           Favorites
         </Link>
+        <Link
+          to={"/watchList"}
+          className="mt-3 text-xl font-semibold tracking-wide text-white drop-shadow-[0_2px_8px_black] transition hover:text-blue-100 md:text-2xl"
+        >
+          WatchList
+        </Link>
       </div>
       <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
       <DisplayCategories categories={categories} query={newSearch} />

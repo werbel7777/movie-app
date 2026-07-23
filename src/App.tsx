@@ -3,6 +3,7 @@ import MainPage from "./pages/mainPage";
 import { Welcome } from "./pages/moviePage";
 import { MoviesByCategoryPage } from "./pages/categoriesMoviesPage";
 import { Favorites } from "./pages/favorites";
+import { WatchList } from "./pages/watchList";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           element={<MoviesByCategoryPage />}
         />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/watchList" element={<WatchList />} />
       </Routes>
     </BrowserRouter>
   );
