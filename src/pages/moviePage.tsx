@@ -79,7 +79,7 @@ export const Welcome = () => {
                 className="text-3xl text-white transition"
                 onClick={handleToggleWatchList}
               >
-                🔖
+                {watchList.includes(actualMovie.id) ? "🔖" : "👁️"}
               </button>
             </div>
           </div>

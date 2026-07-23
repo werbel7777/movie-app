@@ -3,9 +3,9 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 type WatchListState = {
   watchList: number[];
 };
-
+const localStorageWatchlist = localStorage.getItem("watchList");
 const initialState: WatchListState = {
-  watchList: [],
+  watchList: localStorageWatchlist ? JSON.parse(localStorageWatchlist) : [],
 };
 
 const watchListSlice = createSlice({
@@ -18,9 +18,11 @@ const watchListSlice = createSlice({
           (id) => id !== action.payload,
         );
         state.watchList = filteredWatchList;
+        localStorage.setItem("watchList", JSON.stringify(state.watchList));
         return;
       }
       state.watchList = [...state.watchList, action.payload];
+      localStorage.setItem("watchList", JSON.stringify(state.watchList));
     },
   },
 });
