@@ -1,8 +1,9 @@
 import service from "../services/movieServices";
 import { useEffect, useState } from "react";
 import { DisplayMovies } from "../components/displayMovies";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import type { Movie } from "../types/types";
+import { Logo } from "../components/logo";
 
 export const MoviesByCategoryPage = () => {
   const { categoryId } = useParams();
@@ -18,9 +19,9 @@ export const MoviesByCategoryPage = () => {
   }, [categoryId]);
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-900 to-blue-500 p-10 text-blue-500">
-      <div className="font-sans text-2xl font-semibold text-white tracking-wide drop-shadow-[0_6px_12px_rgba(0,0,0,0.7)] -ml-6">
-        movie searcher
-      </div>
+      <Link to="/" className="relative z-50 mb-8 block w-fit cursor-pointer">
+        <Logo />
+      </Link>
       <DisplayMovies results={movies}></DisplayMovies>
     </div>
   );
