@@ -7,7 +7,7 @@ import { DisplayMovies } from "../components/displayMovies";
 import { DisplayCategories } from "../components/displayCategories";
 import { TrendingMoviesPage } from "../components/trendigMoviesPage";
 import { Logo } from "../components/logo";
-import { Link } from "react-router-dom";
+import { Menu } from "../components/hamburgerMenu";
 
 function MainPage() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -39,20 +39,9 @@ function MainPage() {
         <Logo />
       </div>
 
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col items-start gap-2">
         <Search newSearch={newSearch} changeSearch={changeSearch}></Search>
-        <Link
-          to={"/favorites"}
-          className="mt-3 text-xl font-semibold tracking-wide text-white drop-shadow-[0_2px_8px_black] transition hover:text-blue-100 md:text-2xl"
-        >
-          Favorites
-        </Link>
-        <Link
-          to={"/watchList"}
-          className="mt-3 text-xl font-semibold tracking-wide text-white drop-shadow-[0_2px_8px_black] transition hover:text-blue-100 md:text-2xl"
-        >
-          WatchList
-        </Link>
+        <Menu></Menu>
       </div>
       <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
       <DisplayCategories categories={categories} query={newSearch} />
