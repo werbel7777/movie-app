@@ -1,36 +1,46 @@
-# Movie App
+# Movie App 🎬
 
-A responsive movie browser built with React and TypeScript. The app lets users search for movies, browse trending titles, explore movie categories, and open dedicated movie details pages. Movie data is provided by The Movie Database (TMDB) API.
+A responsive movie discovery application built with **React** and **TypeScript**, using the **TMDB API** for movie data.
 
-## Demo
+The project allows users to search for movies, browse trending titles and categories, view detailed movie information, and manage their own favorites list.
 
-Live demo: https://movie-app-iota-fawn-79.vercel.app
+### 🚀 [Live Demo](https://movie-app-iota-fawn-79.vercel.app/)
+
+---
+
+## Preview
+
+<!-- Screenshot will be added here -->
 
 ## Features
 
 - Search movies by title
-- Debounced search input
+- Debounced search to reduce unnecessary API requests
 - Browse trending movies
-- Horizontal trending movies carousel
-- Browse movie categories
-- Open a category page with movies from the selected category
-- Open a movie details page
-- Responsive layout styled with Tailwind CSS
+- Explore movies by category
+- View dedicated movie details pages
+- Add and remove movies from favorites
+- Favorites state managed with Redux
+- Favorites persisted in LocalStorage
 - Client-side routing with React Router
+- Responsive interface styled with Tailwind CSS
 
 ## Tech Stack
 
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- React Router
-- Axios
-- TMDB API
+- **React**
+- **TypeScript**
+- **Redux**
+- **React Router**
+- **Tailwind CSS**
+- **Axios**
+- **Vite**
+- **TMDB API**
 
 ## Getting Started
 
 ### Prerequisites
+
+To run the project locally, you need:
 
 - Node.js
 - npm
@@ -70,13 +80,13 @@ npm run dev
 npm run dev
 ```
 
-Runs the app in development mode.
+Runs the application in development mode.
 
 ```bash
 npm run build
 ```
 
-Builds the app for production.
+Builds the application for production.
 
 ```bash
 npm run lint
@@ -94,14 +104,20 @@ Previews the production build locally.
 
 ```text
 src/
-  components/   Reusable UI components
-  hooks/        Custom React hooks
-  pages/        Route-level pages
-  services/     API service functions
-  types/        Shared TypeScript types
+├── components/    Reusable UI components
+├── hooks/         Custom React hooks
+├── pages/         Route-level pages
+├── services/      API service functions
+└── types/         Shared TypeScript types
 ```
 
-## Environment Variables
+The application separates reusable UI components, API communication, custom hooks, route-level views, and shared TypeScript definitions to keep the codebase easier to maintain and extend.
+
+## API
+
+Movie data is provided by **The Movie Database (TMDB) API**.
+
+The API configuration is stored in environment variables rather than directly in the source code.
 
 | Variable | Description |
 | --- | --- |
@@ -110,12 +126,16 @@ src/
 
 ## Roadmap
 
-- Add background images to category tiles
+Some improvements planned for future versions:
+
 - Improve loading and empty states
 - Add richer movie metadata
-- Improve mobile layout and accessibility
+- Improve accessibility
+- Further improve the mobile experience
 - Add pagination or infinite scrolling
 
 ## Author
 
-Created by [werbel7777](https://github.com/werbel7777).
+Created by **Dawid** as part of my ongoing development in React and TypeScript.
+
+[GitHub Profile](https://github.com/werbel7777)
