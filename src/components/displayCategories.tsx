@@ -1,6 +1,9 @@
 import { Category } from "./category";
 import type { Category as CategoryType } from "../types/types";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import service from "../services/movieServices";
+
+type CategoryPosters = Record<number, string[]>;
 
 export const DisplayCategories = ({
   categories,
@@ -10,6 +13,8 @@ export const DisplayCategories = ({
   query: string;
 }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [categoryPosters, setCategoryPosters] = useState<CategoryPosters>({});
+  const [activePosterIndex, setActivePosterIndex] = useState(0);
 
   const scrollLeft = () => {
     scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
@@ -18,6 +23,43 @@ export const DisplayCategories = ({
   const scrollRight = () => {
     scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
   };
+
+  useEffect(() => {
+    if (!categories.length) return;
+
+    const requests = categories.map((category) =>
+      service.getMovieByCategory(category.id),
+    );
+
+    Promise.all(requests).then((responses) => {
+      const posters = responses.reduce<CategoryPosters>(
+        (posterList, response, index) => {
+          const categoryId = categories[index].id;
+          const categoryMoviePosters = response.data.results
+            .map((movie) => movie.poster_path)
+            .filter((posterPath): posterPath is string => Boolean(posterPath))
+            .slice(0, 5);
+
+          return {
+            ...posterList,
+            [categoryId]: categoryMoviePosters,
+          };
+        },
+        {},
+      );
+
+      setCategoryPosters(posters);
+    });
+  }, [categories]);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActivePosterIndex((currentIndex) => currentIndex + 1);
+    }, 5000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
   if (query) return null;
   if (!categories.length) return null;
   return (
@@ -33,7 +75,12 @@ export const DisplayCategories = ({
         className="hide-scrollbar flex gap-4 overflow-x-auto rounded-xl border border-white/10 bg-white/[0.04] p-4"
       >
         {categories.map((category) => (
-          <Category key={category.id} category={category}></Category>
+          <Category
+            key={category.id}
+            category={category}
+            posters={categoryPosters[category.id] ?? []}
+            activePosterIndex={activePosterIndex}
+          ></Category>
         ))}
       </div>
       <button
