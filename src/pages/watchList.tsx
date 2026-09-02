@@ -24,16 +24,18 @@ export const WatchList = () => {
   }, [watchList]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-900 to-blue-500 p-10 text-white">
-      <Link to="/" className="relative z-50 mb-8 block w-fit cursor-pointer">
-        <Logo />
-      </Link>
+    <div className="min-h-screen bg-slate-950 px-5 py-6 text-slate-100 md:px-10">
+      <div className="mx-auto max-w-7xl">
+        <Link to="/" className="relative z-50 mb-8 block w-fit cursor-pointer">
+          <Logo />
+        </Link>
 
-      <h1 className="text-3xl font-bold drop-shadow-[0_2px_8px_black]">
-        WatchList movies
-      </h1>
+        <h1 className="text-3xl font-bold text-white md:text-4xl">
+          WatchList movies
+        </h1>
 
-      <DisplayMovies results={movies}></DisplayMovies>
+        <DisplayMovies results={movies}></DisplayMovies>
+      </div>
     </div>
   );
 };

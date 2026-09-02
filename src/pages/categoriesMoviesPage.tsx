@@ -18,11 +18,13 @@ export const MoviesByCategoryPage = () => {
     }
   }, [categoryId]);
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-900 to-blue-500 p-10 text-blue-500">
-      <Link to="/" className="relative z-50 mb-8 block w-fit cursor-pointer">
-        <Logo />
-      </Link>
-      <DisplayMovies results={movies}></DisplayMovies>
+    <div className="min-h-screen bg-slate-950 px-5 py-6 text-slate-100 md:px-10">
+      <div className="mx-auto max-w-7xl">
+        <Link to="/" className="relative z-50 mb-8 block w-fit cursor-pointer">
+          <Logo />
+        </Link>
+        <DisplayMovies results={movies}></DisplayMovies>
+      </div>
     </div>
   );
 };
