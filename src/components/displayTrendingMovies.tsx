@@ -22,7 +22,7 @@ export const DisplayTrendingMovies = ({
   return (
     <div className="relative mt-4">
       <button
-        className="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-x-2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-slate-950/80 text-lg font-semibold text-slate-200 shadow-lg shadow-black/30 backdrop-blur transition hover:bg-slate-800 hover:text-white"
+        className="absolute inset-y-0 left-0 z-10 flex w-12 items-center justify-center rounded-l-xl bg-slate-950/60 text-2xl font-semibold text-slate-300 backdrop-blur transition hover:bg-slate-900/90 hover:text-white"
         onClick={scrollLeft}
       >
         &lt;
@@ -41,7 +41,7 @@ export const DisplayTrendingMovies = ({
         ))}
       </div>
       <button
-        className="absolute right-0 top-1/2 z-10 flex h-10 w-10 translate-x-2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-slate-950/80 text-lg font-semibold text-slate-200 shadow-lg shadow-black/30 backdrop-blur transition hover:bg-slate-800 hover:text-white"
+        className="absolute inset-y-0 right-0 z-10 flex w-12 items-center justify-center rounded-r-xl bg-slate-950/60 text-2xl font-semibold text-slate-300 backdrop-blur transition hover:bg-slate-900/90 hover:text-white"
         onClick={scrollRight}
       >
         &gt;
