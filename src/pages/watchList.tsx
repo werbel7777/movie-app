@@ -6,6 +6,7 @@ import type { Movie } from "../types/types";
 import service from "../services/movieServices";
 import { Link } from "react-router-dom";
 import { Logo } from "../components/logo";
+import { SectionTitle } from "../components/trending-now";
 
 export const WatchList = () => {
   const watchList = useSelector(
@@ -30,9 +31,7 @@ export const WatchList = () => {
           <Logo />
         </Link>
 
-        <h1 className="text-3xl font-bold text-white md:text-4xl">
-          WatchList movies
-        </h1>
+        <SectionTitle>WatchList movies</SectionTitle>
 
         <DisplayMovies results={movies}></DisplayMovies>
       </div>
