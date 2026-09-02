@@ -32,13 +32,24 @@ export const DisplayCategories = ({
     );
 
     Promise.all(requests).then((responses) => {
+      const usedMovieIds = new Set<number>();
       const posters = responses.reduce<CategoryPosters>(
         (posterList, response, index) => {
           const categoryId = categories[index].id;
-          const categoryMoviePosters = response.data.results
-            .map((movie) => movie.poster_path)
-            .filter((posterPath): posterPath is string => Boolean(posterPath))
-            .slice(0, 5);
+          const categoryMoviePosters: string[] = [];
+
+          response.data.results.forEach((movie) => {
+            if (
+              categoryMoviePosters.length === 5 ||
+              !movie.poster_path ||
+              usedMovieIds.has(movie.id)
+            ) {
+              return;
+            }
+
+            usedMovieIds.add(movie.id);
+            categoryMoviePosters.push(movie.poster_path);
+          });
 
           return {
             ...posterList,
