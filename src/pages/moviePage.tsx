@@ -17,7 +17,6 @@ export const Welcome = () => {
   const watchList = useSelector(
     (state: RootState) => state.watchList.watchList,
   );
-  console.log(watchList);
 
   const [actualMovie, setActualMovie] = useState<Movie | null>(null);
   const { movieId } = useParams();
@@ -41,57 +40,77 @@ export const Welcome = () => {
   };
 
   if (!actualMovie) {
-    return <div>Cannot show movie, search again!</div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-950 px-5 text-slate-100">
+        <p className="rounded-lg border border-white/10 bg-white/[0.06] px-5 py-4 text-sm text-slate-300">
+          Cannot show movie, search again!
+        </p>
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-900 to-blue-500 p-10">
-      <Link to="/" className="relative z-50 mb-8 block w-fit cursor-pointer">
-        <Logo />
-      </Link>
+    <div className="min-h-screen bg-slate-950 px-5 py-6 text-slate-100 md:px-10">
+      <div className="mx-auto max-w-7xl">
+        <Link to="/" className="relative z-50 mb-8 block w-fit cursor-pointer">
+          <Logo />
+        </Link>
 
-      <div className="flex flex-col md:flex-row gap-8">
-        <div className="shrink-0">
-          <img
-            className="w-full md:w-[90%] rounded"
-            src={`https://image.tmdb.org/t/p/w500${actualMovie.poster_path}`}
-            alt={actualMovie.title}
-          />
-        </div>
-
-        <div className="grid gap-4 content-start">
-          <div>
-            <h1 className="text-3xl font-bold text-white drop-shadow-[0_2px_8px_black]">
-              {actualMovie.title}
-            </h1>
-            <div className="flex items-center gap-4">
-              <button
-                className={`text-3xl transition ${
-                  favoriteList.includes(actualMovie.id)
-                    ? "text-red-500"
-                    : "text-white"
-                }`}
-                onClick={handleToggleFavorite}
-              >
-                {favoriteList.includes(actualMovie.id) ? "♥" : "♡"}
-              </button>
-              <button
-                className="text-3xl text-white transition"
-                onClick={handleToggleWatchList}
-              >
-                {watchList.includes(actualMovie.id) ? "🔖" : "👁️"}
-              </button>
-            </div>
+        <article className="grid gap-8 lg:grid-cols-[minmax(260px,360px)_1fr] lg:items-start">
+          <div className="overflow-hidden rounded-xl bg-white/[0.06] shadow-2xl shadow-black/30">
+            {actualMovie.poster_path ? (
+              <img
+                className="aspect-[2/3] w-full object-cover"
+                src={`https://image.tmdb.org/t/p/w500${actualMovie.poster_path}`}
+                alt={actualMovie.title}
+              />
+            ) : (
+              <div className="flex aspect-[2/3] items-center justify-center px-6 text-center text-slate-500">
+                No poster available
+              </div>
+            )}
           </div>
 
-          <p className="text-sm text-blue-100 drop-shadow-[0_2px_8px_black]">
-            {actualMovie.release_date}
-          </p>
+          <div className="max-w-3xl">
+            <div className="mb-5 flex flex-wrap items-start justify-between gap-5">
+              <div>
+                <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+                  Movie details
+                </p>
+                <h1 className="text-4xl font-bold leading-tight text-white md:text-6xl">
+                  {actualMovie.title}
+                </h1>
+              </div>
 
-          <p className="text-white leading-7 drop-shadow-[0_2px_8px_black]">
-            {actualMovie.overview}
-          </p>
-        </div>
+              <div className="flex items-center gap-3">
+                <button
+                  className={`flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.08] text-3xl transition hover:bg-white/[0.14] ${
+                    favoriteList.includes(actualMovie.id)
+                      ? "text-red-400"
+                      : "text-white"
+                  }`}
+                  onClick={handleToggleFavorite}
+                >
+                  {favoriteList.includes(actualMovie.id) ? "♥" : "♡"}
+                </button>
+                <button
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.08] text-2xl text-white transition hover:bg-white/[0.14]"
+                  onClick={handleToggleWatchList}
+                >
+                  {watchList.includes(actualMovie.id) ? "🔖" : "👁️"}
+                </button>
+              </div>
+            </div>
+
+            <p className="mb-8 inline-flex rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm font-medium text-slate-300">
+              {actualMovie.release_date}
+            </p>
+
+            <p className="text-base leading-8 text-slate-300 md:text-lg">
+              {actualMovie.overview}
+            </p>
+          </div>
+        </article>
       </div>
     </div>
   );
