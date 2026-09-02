@@ -6,15 +6,15 @@ export const Search = ({
   changeSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
-    <div className="relative mt-3">
+    <div className="relative w-full max-w-2xl">
       <input
-        className="border border-gray-400 rounded text-black drop-shadow-[0_2px_2px_black] placeholder-gray-500"
+        className="w-full rounded-lg border border-white/10 bg-white/10 px-4 py-3 text-base text-white outline-none transition placeholder:text-slate-400 hover:border-blue-300/40 focus:border-blue-300 focus:bg-white/15 focus:ring-2 focus:ring-blue-400/20"
         value={newSearch}
         onChange={changeSearch}
       />
 
       {newSearch === "" && (
-        <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 animate-pulse pointer-events-none opacity-100 transition">
+        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 opacity-100 transition">
           find your movie
         </span>
       )}

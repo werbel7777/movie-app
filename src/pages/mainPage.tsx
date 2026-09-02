@@ -34,18 +34,23 @@ function MainPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-900 to-blue-500 text-blue-500 p-10 ">
-      <div className="font-sans text-2xl font-semibold text-white tracking-wide drop-shadow-[0_6px_12px_rgba(0,0,0,0.7)] -ml-6">
-        <Logo />
-      </div>
+    <div className="min-h-screen bg-slate-950 px-5 py-6 text-slate-100 md:px-10">
+      <header className="mx-auto flex max-w-7xl flex-col gap-5 border-b border-white/10 pb-6">
+        <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <div className="font-sans text-2xl font-semibold tracking-wide text-white">
+            <Logo />
+          </div>
+          <Menu></Menu>
+        </div>
 
-      <div className="flex flex-col items-start gap-2">
         <Search newSearch={newSearch} changeSearch={changeSearch}></Search>
-        <Menu></Menu>
-      </div>
-      <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
-      <DisplayCategories categories={categories} query={newSearch} />
-      <DisplayMovies results={movies}></DisplayMovies>
+      </header>
+
+      <main className="mx-auto max-w-7xl">
+        <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
+        <DisplayCategories categories={categories} query={newSearch} />
+        <DisplayMovies results={movies}></DisplayMovies>
+      </main>
     </div>
   );
 }
