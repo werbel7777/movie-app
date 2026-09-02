@@ -84,17 +84,21 @@ export const Welcome = () => {
 
               <div className="flex items-center gap-3">
                 <button
-                  className={`flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.08] text-3xl transition hover:bg-white/[0.14] ${
+                  className={`flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/[0.06] text-2xl transition hover:border-white/20 hover:bg-white/[0.1] ${
                     favoriteList.includes(actualMovie.id)
                       ? "text-red-400"
-                      : "text-white"
+                      : "text-slate-200"
                   }`}
                   onClick={handleToggleFavorite}
                 >
                   {favoriteList.includes(actualMovie.id) ? "♥" : "♡"}
                 </button>
                 <button
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.08] text-2xl text-white transition hover:bg-white/[0.14]"
+                  className={`flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/[0.06] text-xl transition hover:border-white/20 hover:bg-white/[0.1] ${
+                    watchList.includes(actualMovie.id)
+                      ? "text-sky-300"
+                      : "text-slate-200"
+                  }`}
                   onClick={handleToggleWatchList}
                 >
                   {watchList.includes(actualMovie.id) ? "🔖" : "👁️"}
