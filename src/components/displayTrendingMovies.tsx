@@ -20,16 +20,16 @@ export const DisplayTrendingMovies = ({
   if (!results.length) return null;
 
   return (
-    <div className="relative">
+    <div className="relative mt-4">
       <button
-        className="absolute left-2 top-1/2 z-10 -translate-y-1/2 h-10 w-10 rounded-full bg-white/5 text-white text-xl font-bold shadow-md backdrop-blur-md transition hover:bg-white/10"
+        className="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-x-2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-slate-950/80 text-lg font-semibold text-slate-200 shadow-lg shadow-black/30 backdrop-blur transition hover:bg-slate-800 hover:text-white"
         onClick={scrollLeft}
       >
         &lt;
       </button>
       <div
         ref={scrollRef}
-        className="hide-scrollbar flex gap-4 overflow-x-auto bg-white/10 backdrop-blur-md rounded p-4"
+        className="hide-scrollbar flex gap-4 overflow-x-auto rounded-xl border border-white/10 bg-white/[0.04] p-4"
       >
         {results.map((movie) => (
           <TrendingMovie
@@ -41,7 +41,7 @@ export const DisplayTrendingMovies = ({
         ))}
       </div>
       <button
-        className="absolute right-2 top-1/2 z-10 -translate-y-1/2 h-10 w-10 rounded-full bg-white/20 text-white text-xl font-bold shadow-md backdrop-blur-md transition hover:bg-white/40"
+        className="absolute right-0 top-1/2 z-10 flex h-10 w-10 translate-x-2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-slate-950/80 text-lg font-semibold text-slate-200 shadow-lg shadow-black/30 backdrop-blur transition hover:bg-slate-800 hover:text-white"
         onClick={scrollRight}
       >
         &gt;
