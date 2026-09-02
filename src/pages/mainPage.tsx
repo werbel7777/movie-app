@@ -35,7 +35,7 @@ function MainPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 px-5 py-6 text-slate-100 md:px-10">
-      <header className="mx-auto flex max-w-7xl flex-col gap-5 border-b border-white/10 pb-6">
+      <header className="mx-auto flex max-w-[1600px] flex-col gap-5 border-b border-white/10 pb-6">
         <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
           <div className="font-sans text-2xl font-semibold tracking-wide text-white">
             <Logo />
@@ -46,7 +46,7 @@ function MainPage() {
         <Search newSearch={newSearch} changeSearch={changeSearch}></Search>
       </header>
 
-      <main className="mx-auto max-w-7xl">
+      <main className="mx-auto max-w-[1600px]">
         <TrendingMoviesPage query={newSearch}></TrendingMoviesPage>
         <DisplayCategories categories={categories} query={newSearch} />
         <DisplayMovies results={movies}></DisplayMovies>

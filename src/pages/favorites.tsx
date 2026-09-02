@@ -23,7 +23,7 @@ export const Favorites = () => {
   }, [favoriteList]);
   return (
     <div className="min-h-screen bg-slate-950 px-5 py-6 text-slate-100 md:px-10">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[1600px]">
         <Link to="/" className="relative z-50 mb-8 block w-fit cursor-pointer">
           <Logo />
         </Link>
