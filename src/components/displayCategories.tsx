@@ -74,12 +74,13 @@ export const DisplayCategories = ({
         ref={scrollRef}
         className="hide-scrollbar flex gap-4 overflow-x-auto rounded-xl border border-white/10 bg-white/[0.04] p-4"
       >
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <Category
             key={category.id}
             category={category}
             posters={categoryPosters[category.id] ?? []}
             activePosterIndex={activePosterIndex}
+            categoryIndex={index}
           ></Category>
         ))}
       </div>
