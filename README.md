@@ -10,7 +10,7 @@ The project allows users to search for movies, browse trending titles and catego
 
 ## Preview
 
-<!-- Screenshot will be added here -->
+![MovieSearcher application preview](screenshots/movie-searcher-home.png)
 
 ## Features
 
