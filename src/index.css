@@ -10,3 +10,15 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@keyframes posterFade {
+  from {
+    opacity: 0.45;
+    filter: saturate(0.45);
+  }
+
+  to {
+    opacity: 0.7;
+    filter: saturate(0.75);
+  }
+}
