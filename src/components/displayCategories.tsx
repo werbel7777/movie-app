@@ -115,14 +115,14 @@ export const DisplayCategories = ({
       </div>
       <div className="relative">
         <button
-          className="absolute inset-y-0 left-0 z-10 flex w-12 items-center justify-center bg-slate-950/60 text-2xl font-semibold text-slate-300 backdrop-blur transition hover:bg-slate-900/90 hover:text-white"
+          className="absolute inset-y-0 left-0 z-10 hidden w-12 items-center justify-center bg-slate-950/60 text-2xl font-semibold text-slate-300 backdrop-blur transition hover:bg-slate-900/90 hover:text-white lg:flex"
           onClick={scrollLeft}
         >
           &lt;
         </button>
         <div
           ref={scrollRef}
-          className="hide-scrollbar flex gap-4 overflow-x-auto p-4"
+          className="hide-scrollbar flex gap-3 overflow-x-auto p-3 sm:gap-4 sm:p-4"
         >
           {categories.map((category) => (
             <Category
@@ -135,7 +135,7 @@ export const DisplayCategories = ({
           ))}
         </div>
         <button
-          className="absolute inset-y-0 right-0 z-10 flex w-12 items-center justify-center bg-slate-950/60 text-2xl font-semibold text-slate-300 backdrop-blur transition hover:bg-slate-900/90 hover:text-white"
+          className="absolute inset-y-0 right-0 z-10 hidden w-12 items-center justify-center bg-slate-950/60 text-2xl font-semibold text-slate-300 backdrop-blur transition hover:bg-slate-900/90 hover:text-white lg:flex"
           onClick={scrollRight}
         >
           &gt;

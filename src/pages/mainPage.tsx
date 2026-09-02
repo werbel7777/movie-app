@@ -34,7 +34,7 @@ function MainPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 px-5 py-6 text-slate-100 md:px-10">
+    <div className="min-h-screen bg-slate-950 px-4 py-6 text-slate-100 landscape:py-4 md:px-10">
       <header className="mx-auto flex max-w-[1600px] flex-col gap-5 border-b border-white/10 pb-6">
         <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
           <div className="font-sans text-2xl font-semibold tracking-wide text-white">

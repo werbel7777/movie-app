@@ -13,7 +13,7 @@ export const Category = ({
   return (
     <Link
       to={`/categories/${category.id}`}
-      className="group relative flex h-56 w-44 shrink-0 items-end overflow-hidden rounded-lg bg-white/[0.06] p-4 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.09]"
+      className="group relative flex h-44 w-32 shrink-0 items-end overflow-hidden rounded-lg bg-white/[0.06] p-3 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.09] sm:h-52 sm:w-40 sm:p-4 lg:h-56 lg:w-44"
     >
       {posterPath ? (
         <img
@@ -27,7 +27,7 @@ export const Category = ({
       )}
 
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent" />
-      <span className="relative z-10 text-lg font-semibold leading-tight text-white transition group-hover:text-sky-100">
+      <span className="relative z-10 text-base font-semibold leading-tight text-white transition group-hover:text-sky-100 sm:text-lg">
         {category.name}
       </span>
     </Link>
