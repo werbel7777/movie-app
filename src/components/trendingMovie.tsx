@@ -10,7 +10,10 @@ export const TrendingMovie = ({
   id: number;
 }) => {
   return (
-    <Link to={`/movie/${id}`} className="group block w-40 shrink-0 sm:w-44">
+    <Link
+      to={`/movie/${id}`}
+      className="group block w-32 shrink-0 sm:w-40 lg:w-44"
+    >
       <div className="overflow-hidden rounded-lg bg-white/[0.06] shadow-lg shadow-black/20 transition duration-300 group-hover:-translate-y-1 group-hover:bg-white/[0.09]">
         <div className="aspect-[2/3] overflow-hidden bg-slate-900">
           {path ? (
