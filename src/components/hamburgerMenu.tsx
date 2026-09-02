@@ -10,20 +10,13 @@ export const Menu = () => {
   const linkClassName =
     "rounded px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white";
 
-  if (!isVisible) {
-    return (
+  return (
+    <div className="relative w-fit self-start md:self-auto">
       <button className={buttonClassName} onClick={toggleIsVisible}>
         Menu
       </button>
-    );
-  }
-  {
-    return (
-      <div className="relative">
-        <button className={buttonClassName} onClick={toggleIsVisible}>
-          Menu
-        </button>
-        <div className="absolute right-0 top-full z-50 mt-3 flex min-w-40 flex-col items-stretch rounded-lg border border-white/10 bg-slate-900/95 p-2 shadow-xl shadow-black/30 backdrop-blur">
+      {isVisible && (
+        <div className="absolute left-0 top-full z-50 mt-3 flex min-w-40 flex-col items-stretch rounded-lg border border-white/10 bg-slate-900/95 p-2 shadow-xl shadow-black/30 backdrop-blur md:left-auto md:right-0">
           <Link to={"/favorites"} className={linkClassName}>
             Favorites
           </Link>
@@ -31,7 +24,7 @@ export const Menu = () => {
             WatchList
           </Link>
         </div>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 };
