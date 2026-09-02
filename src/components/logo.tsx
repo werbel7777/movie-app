@@ -1,8 +1,8 @@
 export const Logo = () => {
   return (
-    <div className="pointer-events-none flex items-center gap-3">
+    <div className="pointer-events-none flex items-center gap-4">
       <svg
-        className="h-12 w-14 md:h-14 md:w-16"
+        className="h-14 w-16 md:h-16 md:w-20"
         viewBox="0 0 72 56"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ export const Logo = () => {
         />
       </svg>
 
-      <div className="text-2xl font-semibold tracking-wide md:text-3xl">
+      <div className="text-3xl font-semibold tracking-wide md:text-4xl">
         <span className="text-white">movie</span>{" "}
         <span className="text-sky-300">
           searcher
