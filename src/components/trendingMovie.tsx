@@ -25,7 +25,7 @@ export const TrendingMovie = ({
             </div>
           )}
         </div>
-        <p className="line-clamp-2 p-3 text-sm font-semibold leading-snug text-white">
+        <p className="line-clamp-2 flex h-14 items-center p-3 text-sm font-semibold leading-snug text-white">
           {title}
         </p>
       </div>
