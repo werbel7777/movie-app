@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Logo } from "../components/logo";
 import { useSelector } from "react-redux";
 import type { RootState } from "../store/store";
+import { SectionTitle } from "../components/trending-now";
 
 export const Favorites = () => {
   const favoriteList = useSelector(
@@ -28,9 +29,7 @@ export const Favorites = () => {
           <Logo />
         </Link>
 
-        <h1 className="text-3xl font-bold text-white md:text-4xl">
-          Favorite movies
-        </h1>
+        <SectionTitle>Favorite movies</SectionTitle>
 
         <DisplayMovies results={movies}></DisplayMovies>
       </div>
