@@ -13,12 +13,14 @@
 
 @keyframes posterFade {
   from {
-    opacity: 0.45;
-    filter: saturate(0.45);
+    opacity: 0.25;
+    filter: saturate(0.25) brightness(0.75);
+    transform: scale(1.02);
   }
 
   to {
-    opacity: 0.7;
-    filter: saturate(0.75);
+    opacity: 0.75;
+    filter: saturate(0.9) brightness(1);
+    transform: scale(1);
   }
 }

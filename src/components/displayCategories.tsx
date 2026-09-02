@@ -3,7 +3,12 @@ import type { Category as CategoryType } from "../types/types";
 import { useEffect, useRef, useState } from "react";
 import service from "../services/movieServices";
 
-type CategoryPosters = Record<number, string[]>;
+type CategoryPoster = {
+  movieId: number;
+  posterPath: string;
+};
+
+type CategoryPosters = Record<number, CategoryPoster[]>;
 
 export const DisplayCategories = ({
   categories,
@@ -32,23 +37,29 @@ export const DisplayCategories = ({
     );
 
     Promise.all(requests).then((responses) => {
-      const usedMovieIds = new Set<number>();
       const posters = responses.reduce<CategoryPosters>(
         (posterList, response, index) => {
           const categoryId = categories[index].id;
-          const categoryMoviePosters: string[] = [];
+          const categoryMoviePosters: CategoryPoster[] = [];
+          const usedCategoryMovieIds = new Set<number>();
+          const usedCategoryPosterPaths = new Set<string>();
 
           response.data.results.forEach((movie) => {
             if (
               categoryMoviePosters.length === 5 ||
               !movie.poster_path ||
-              usedMovieIds.has(movie.id)
+              usedCategoryMovieIds.has(movie.id) ||
+              usedCategoryPosterPaths.has(movie.poster_path)
             ) {
               return;
             }
 
-            usedMovieIds.add(movie.id);
-            categoryMoviePosters.push(movie.poster_path);
+            usedCategoryMovieIds.add(movie.id);
+            usedCategoryPosterPaths.add(movie.poster_path);
+            categoryMoviePosters.push({
+              movieId: movie.id,
+              posterPath: movie.poster_path,
+            });
           });
 
           return {
@@ -73,6 +84,29 @@ export const DisplayCategories = ({
 
   if (query) return null;
   if (!categories.length) return null;
+
+  const visibleMovieIds = new Set<number>();
+  const visiblePosterPaths = new Set<string>();
+
+  const getVisiblePosterPath = (posters: CategoryPoster[]) => {
+    if (!posters.length) return undefined;
+
+    for (let i = 0; i < posters.length; i += 1) {
+      const poster = posters[(activePosterIndex + i) % posters.length];
+
+      if (
+        !visibleMovieIds.has(poster.movieId) &&
+        !visiblePosterPaths.has(poster.posterPath)
+      ) {
+        visibleMovieIds.add(poster.movieId);
+        visiblePosterPaths.add(poster.posterPath);
+        return poster.posterPath;
+      }
+    }
+
+    return undefined;
+  };
+
   return (
     <div className="relative mt-10">
       <button
@@ -89,8 +123,9 @@ export const DisplayCategories = ({
           <Category
             key={category.id}
             category={category}
-            posters={categoryPosters[category.id] ?? []}
-            activePosterIndex={activePosterIndex}
+            posterPath={getVisiblePosterPath(
+              categoryPosters[category.id] ?? [],
+            )}
           ></Category>
         ))}
       </div>
