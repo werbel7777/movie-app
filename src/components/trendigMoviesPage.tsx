@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import type { Movie } from "../types/types";
 import service from "../services/movieServices";
 import { DisplayTrendingMovies } from "./displayTrendingMovies";
-import { SectionTitle } from "./trending-now";
 
 export const TrendingMoviesPage = ({ query }: { query: string }) => {
   const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
@@ -16,12 +15,9 @@ export const TrendingMoviesPage = ({ query }: { query: string }) => {
   if (query) return null;
 
   return (
-    <>
-      <div className="mt-10">
-        <SectionTitle>Trending now</SectionTitle>
-      </div>
-
-      <DisplayTrendingMovies results={trendingMovies} />
-    </>
+    <DisplayTrendingMovies
+      results={trendingMovies}
+      title="Trending this week"
+    />
   );
 };

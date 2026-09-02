@@ -1,11 +1,14 @@
 import { TrendingMovie } from "./trendingMovie";
 import type { Movie as MovieType } from "../types/types";
 import { useRef } from "react";
+import { SectionTitle } from "./trending-now";
 
 export const DisplayTrendingMovies = ({
   results,
+  title,
 }: {
   results: MovieType[];
+  title: string;
 }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -20,32 +23,37 @@ export const DisplayTrendingMovies = ({
   if (!results.length) return null;
 
   return (
-    <div className="relative">
-      <button
-        className="absolute left-2 top-1/2 z-10 -translate-y-1/2 h-10 w-10 rounded-full bg-white/5 text-white text-xl font-bold shadow-md backdrop-blur-md transition hover:bg-white/10"
-        onClick={scrollLeft}
-      >
-        &lt;
-      </button>
-      <div
-        ref={scrollRef}
-        className="hide-scrollbar flex gap-4 overflow-x-auto bg-white/10 backdrop-blur-md rounded p-4"
-      >
-        {results.map((movie) => (
-          <TrendingMovie
-            key={movie.id}
-            title={movie.original_title}
-            path={movie.poster_path}
-            id={movie.id}
-          />
-        ))}
+    <section className="mt-10 overflow-hidden rounded-xl border border-white/10 bg-white/[0.04]">
+      <div className="border-b border-white/10 px-4 py-3">
+        <SectionTitle>{title}</SectionTitle>
       </div>
-      <button
-        className="absolute right-2 top-1/2 z-10 -translate-y-1/2 h-10 w-10 rounded-full bg-white/20 text-white text-xl font-bold shadow-md backdrop-blur-md transition hover:bg-white/40"
-        onClick={scrollRight}
-      >
-        &gt;
-      </button>
-    </div>
+      <div className="relative">
+        <button
+          className="absolute inset-y-0 left-0 z-10 flex w-12 items-center justify-center bg-slate-950/60 text-2xl font-semibold text-slate-300 backdrop-blur transition hover:bg-slate-900/90 hover:text-white"
+          onClick={scrollLeft}
+        >
+          &lt;
+        </button>
+        <div
+          ref={scrollRef}
+          className="hide-scrollbar flex gap-4 overflow-x-auto p-4"
+        >
+          {results.map((movie) => (
+            <TrendingMovie
+              key={movie.id}
+              title={movie.original_title}
+              path={movie.poster_path}
+              id={movie.id}
+            />
+          ))}
+        </div>
+        <button
+          className="absolute inset-y-0 right-0 z-10 flex w-12 items-center justify-center bg-slate-950/60 text-2xl font-semibold text-slate-300 backdrop-blur transition hover:bg-slate-900/90 hover:text-white"
+          onClick={scrollRight}
+        >
+          &gt;
+        </button>
+      </div>
+    </section>
   );
 };

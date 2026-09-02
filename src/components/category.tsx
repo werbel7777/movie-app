@@ -3,15 +3,33 @@ import { Link } from "react-router-dom";
 
 type CategoryProps = {
   category: CategoryType;
+  posterPath?: string;
 };
 
-export const Category = ({ category }: CategoryProps) => {
+export const Category = ({
+  category,
+  posterPath,
+}: CategoryProps) => {
   return (
     <Link
       to={`/categories/${category.id}`}
-      className="flex h-64 w-44 shrink-0 items-center justify-center rounded bg-white/20 p-4 text-center text-lg font-semibold text-white shadow-md transition hover:bg-white/40"
+      className="group relative flex h-56 w-44 shrink-0 items-end overflow-hidden rounded-lg bg-white/[0.06] p-4 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.09]"
     >
-      {category.name}
+      {posterPath ? (
+        <img
+          key={posterPath}
+          src={`https://image.tmdb.org/t/p/w500${posterPath}`}
+          alt=""
+          className="absolute inset-0 h-full w-full animate-[posterFade_900ms_ease-out] object-cover opacity-75 saturate-90 transition duration-500 group-hover:scale-105 group-hover:opacity-90 group-hover:saturate-100"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-950" />
+      )}
+
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent" />
+      <span className="relative z-10 text-lg font-semibold leading-tight text-white transition group-hover:text-sky-100">
+        {category.name}
+      </span>
     </Link>
   );
 };
